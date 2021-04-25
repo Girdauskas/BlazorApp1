@@ -16,8 +16,8 @@ jobs:
         with:
           version: latest
       - name: build the image
-      run: |
-        docker buildx build \
-          -f "BlazorApp1/Server/Dockerfile" \
-          --tag girdauskas/blazorapp1:latest \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 .
+        run: |
+          docker buildx build \
+            -f "BlazorApp1/Server/Dockerfile" \
+            --tag girdauskas/blazorapp1:latest \
+            --platform linux/amd64,linux/arm/v7,linux/arm64 .
