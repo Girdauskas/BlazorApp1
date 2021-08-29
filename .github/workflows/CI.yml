@@ -17,9 +17,9 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: login to docker hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      - name: build the image
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=APP_VERSION::${GITHUB_REF#refs/tags/Versions/}
+      - name: Test version
         run: |
-          docker buildx build --push \
-            -f "BlazorApp1/Server/Dockerfile" \
-            --tag girdauskas/blazorapp1:latest \
-            --platform linux/amd64,linux/arm/v7,linux/arm64 .
+          echo ${{ steps.get_version.outputs.APP_VERSION }}
