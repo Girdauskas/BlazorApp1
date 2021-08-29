@@ -22,4 +22,6 @@ jobs:
         run: echo ::set-output name=APP_VERSION::${GITHUB_REF#refs/tags/Versions/}
       - name: Test version
         run: |
-          echo ${{ steps.get_version.outputs.APP_VERSION }}
+          echo $APP_VERSION
+        env:
+          APP_VERSION: ${{ steps.get_version.outputs.APP_VERSION }}
